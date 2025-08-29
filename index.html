@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Currículo - Eric Alves</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --primary-color: #2c3e50;
@@ -41,17 +40,6 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-    }
-    
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
-      background-size: cover;
     }
     
     .profile-header {
@@ -148,10 +136,6 @@
       gap: 10px;
     }
     
-    .section-title i {
-      color: var(--accent-color);
-    }
-    
     .summary-text {
       text-align: justify;
       line-height: 1.8;
@@ -225,8 +209,90 @@
       color: white;
     }
     
-    .skill-item:hover i {
+    .view-toggle {
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    .toggle-btn {
+      background: var(--primary-color);
       color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: var(--shadow);
+    }
+    
+    .toggle-btn:hover {
+      background: var(--accent-color);
+      transform: translateY(-3px);
+    }
+    
+    /* Página de Projetos */
+    #projects-page {
+      display: none;
+    }
+    
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+    
+    .project-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .project-image {
+      height: 200px;
+      background: linear-gradient(45deg, #3498db, #1abc9c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .project-info {
+      padding: 20px;
+    }
+    
+    .project-info h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .project-info p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+    
+    .project-tag {
+      background: var(--light-color);
+      color: var(--primary-color);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
     }
     
     footer {
@@ -236,6 +302,26 @@
       padding: 20px 0;
       margin-top: 40px;
     }
+    
+    /* Ícones usando Unicode e estilização */
+    .icon::before {
+      display: inline-block;
+      margin-right: 10px;
+      width: 24px;
+      text-align: center;
+      color: var(--accent-color);
+    }
+    
+    .icon-user::before { content: "👤"; }
+    .icon-briefcase::before { content: "💼"; }
+    .icon-graduation::before { content: "🎓"; }
+    .icon-star::before { content: "⭐"; }
+    .icon-envelope::before { content: "✉️"; }
+    .icon-phone::before { content: "📱"; }
+    .icon-location::before { content: "📍"; }
+    .icon-check::before { content: "✅"; }
+    .icon-project::before { content: "🚀"; }
+    .icon-back::before { content: "⬅️"; }
     
     @media (max-width: 768px) {
       .profile-header h1 {
@@ -250,6 +336,10 @@
       .skills-container {
         grid-template-columns: 1fr;
       }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -262,33 +352,37 @@
       
       <div class="contact-info">
         <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <a href="mailto:seuemail@email.com">eric.alves.oliveira@gmail.com</a>
+          <span class="icon icon-envelope"></span>
+          <a href="mailto:seuemail@email.com">seuemail@email.com</a>
         </div>
         <div class="contact-item">
-          <i class="fas fa-phone"></i>
-          <a href="tel:5511999999999">(11) 94301-6237</a>
+          <span class="icon icon-phone"></span>
+          <a href="tel:5511999999999">(11) 99999-9999</a>
         </div>
         <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
+          <span class="icon icon-location"></span>
           <span>São Paulo - SP</span>
         </div>
       </div>
       
       <div class="social-links">
         <a href="https://www.linkedin.com/" title="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
+          <span>in</span>
         </a>
         <a href="https://github.com/" title="GitHub">
-          <i class="fab fa-github"></i>
+          <span>gh</span>
         </a>
       </div>
     </div>
   </header>
 
-  <main class="container">
+  <div class="view-toggle">
+    <button id="toggle-view" class="toggle-btn">Ver Meus Projetos</button>
+  </div>
+
+  <main class="container" id="main-content">
     <section class="card">
-      <h2 class="section-title"><i class="fas fa-user"></i> Resumo Profissional</h2>
+      <h2 class="section-title"><span class="icon icon-user"></span> Resumo Profissional</h2>
       <p class="summary-text">
         Profissional de TI com experiência em suporte técnico, atendimento remoto, implantação de sistemas e manutenção de infraestrutura. 
         Atuação em delegacias, penitenciárias, prefeituras e mais de 45 unidades do Poupatempo. 
@@ -297,7 +391,7 @@
     </section>
 
     <section class="card">
-      <h2 class="section-title"><i class="fas fa-briefcase"></i> Experiência Profissional</h2>
+      <h2 class="section-title"><span class="icon icon-briefcase"></span> Experiência Profissional</h2>
       
       <div class="experience-item">
         <div class="job-title">Técnico de Suporte</div>
@@ -325,7 +419,7 @@
     </section>
 
     <section class="card">
-      <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Formação Acadêmica</h2>
+      <h2 class="section-title"><span class="icon icon-graduation"></span> Formação Acadêmica</h2>
       
       <div class="education-item">
         <div class="job-title">Análise e Desenvolvimento de Sistemas</div>
@@ -334,46 +428,152 @@
     </section>
 
     <section class="card">
-      <h2 class="section-title"><i class="fas fa-star"></i> Competências</h2>
+      <h2 class="section-title"><span class="icon icon-star"></span> Competências</h2>
       
       <div class="skills-container">
         <div class="skill-item">
-          <i class="fas fa-check-circle"></i>
+          <span class="icon icon-check"></span>
           <span>Suporte técnico em Windows e Office</span>
         </div>
         <div class="skill-item">
-          <i class="fas fa-check-circle"></i>
+          <span class="icon icon-check"></span>
           <span>Active Directory (AD)</span>
         </div>
         <div class="skill-item">
-          <i class="fas fa-check-circle"></i>
+          <span class="icon icon-check"></span>
           <span>ITSM – atendimento de chamados</span>
         </div>
         <div class="skill-item">
-          <i class="fas fa-check-circle"></i>
+          <span class="icon icon-check"></span>
           <span>Redes de computadores</span>
         </div>
         <div class="skill-item">
-          <i class="fas fa-check-circle"></i>
+          <span class="icon icon-check"></span>
           <span>Noções de Power BI</span>
         </div>
         <div class="skill-item">
-          <i class="fas fa-check-circle"></i>
+          <span class="icon icon-check"></span>
           <span>Implantação e configuração de sistemas</span>
         </div>
         <div class="skill-item">
-          <i class="fas fa-check-circle"></i>
+          <span class="icon icon-check"></span>
           <span>Treinamento e orientação de usuários</span>
         </div>
       </div>
     </section>
   </main>
 
+  <div class="container" id="projects-page">
+    <h2 class="section-title"><span class="icon icon-project"></span> Meus Projetos</h2>
+    
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image">Sistema Biométrico</div>
+        <div class="project-info">
+          <h3>Sistema de Coleta Biométrica</h3>
+          <p>Desenvolvimento e implantação de sistema de identificação biométrica para delegacias e penitenciárias.</p>
+          <div class="project-tags">
+            <span class="project-tag">Windows</span>
+            <span class="project-tag">C#</span>
+            <span class="project-tag">SQL Server</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">Dashboard ITSM</div>
+        <div class="project-info">
+          <h3>Dashboard de Chamados</h3>
+          <p>Dashboard em Power BI para análise de métricas de atendimento de chamados de suporte técnico.</p>
+          <div class="project-tags">
+            <span class="project-tag">Power BI</span>
+            <span class="project-tag">ITSM</span>
+            <span class="project-tag">SQL</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">Automação</div>
+        <div class="project-info">
+          <h3>Scripts de Automação</h3>
+          <p>Coleção de scripts PowerShell para automação de tarefas de deployment e manutenção de sistemas.</p>
+          <div class="project-tags">
+            <span class="project-tag">PowerShell</span>
+            <span class="project-tag">Active Directory</span>
+            <span class="project-tag">Automação</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">App Suporte</div>
+        <div class="project-info">
+          <h3>Aplicativo de Suporte Remoto</h3>
+          <p>Aplicativo para facilitar o acesso remoto e suporte técnico para usuários finais.</p>
+          <div class="project-tags">
+            <span class="project-tag">C#</span>
+            <span class="project-tag">WinForms</span>
+            <span class="project-tag">RDP</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">Treinamento</div>
+        <div class="project-info">
+          <h3>Plataforma de Treinamento</h3>
+          <p>Plataforma com materiais de treinamento para usuários do sistema biométrico.</p>
+          <div class="project-tags">
+            <span class="project-tag">HTML/CSS</span>
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">Treinamento</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">Monitoramento</div>
+        <div class="project-info">
+          <h3>Sistema de Monitoramento</h3>
+          <p>Sistema para monitoramento de desempenho de estações de trabalho em unidades do Poupatempo.</p>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">SNMP</span>
+            <span class="project-tag">Dashboard</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <div class="container">
       &copy; 2025 - Eric Alves - Todos os direitos reservados
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleButton = document.getElementById('toggle-view');
+      const mainContent = document.getElementById('main-content');
+      const projectsPage = document.getElementById('projects-page');
+      
+      toggleButton.addEventListener('click', function() {
+        if (mainContent.style.display === 'none') {
+          // Mostrar currículo, esconder projetos
+          mainContent.style.display = 'block';
+          projectsPage.style.display = 'none';
+          toggleButton.innerHTML = 'Ver Meus Projetos';
+        } else {
+          // Mostrar projetos, esconder currículo
+          mainContent.style.display = 'none';
+          projectsPage.style.display = 'block';
+          toggleButton.innerHTML = '<span class="icon-back"></span> Voltar ao Currículo';
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
