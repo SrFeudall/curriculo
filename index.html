@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currículo - Eric Alves</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #1abc9c;
+      --light-color: #f4f4f9;
+      --dark-color: #333;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: #f9f9f9;
+      color: var(--dark-color);
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #1a2530 100%);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+      background-size: cover;
+    }
+    
+    .profile-header {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .profile-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    
+    .profile-header .title {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: var(--accent-color);
+      font-weight: 300;
+    }
+    
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 15px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .contact-item a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .contact-item a:hover {
+      color: var(--accent-color);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--accent-color);
+      transform: translateY(-3px);
+    }
+    
+    main {
+      padding: 40px 0;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 25px;
+      margin-bottom: 30px;
+      transition: transform 0.3s;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .section-title {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .section-title i {
+      color: var(--accent-color);
+    }
+    
+    .summary-text {
+      text-align: justify;
+      line-height: 1.8;
+    }
+    
+    .experience-item, .education-item {
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .experience-item:last-child, .education-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .job-title {
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 1.1rem;
+    }
+    
+    .company {
+      color: var(--secondary-color);
+      margin-bottom: 5px;
+    }
+    
+    .date {
+      color: #777;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+    
+    .responsibilities {
+      padding-left: 20px;
+    }
+    
+    .responsibilities li {
+      margin-bottom: 8px;
+      position: relative;
+    }
+    
+    .responsibilities li::before {
+      content: "•";
+      color: var(--accent-color);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    
+    .skill-item {
+      background: var(--light-color);
+      padding: 12px 15px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+    
+    .skill-item:hover {
+      background: var(--accent-color);
+      color: white;
+    }
+    
+    .skill-item:hover i {
+      color: white;
+    }
+    
+    footer {
+      background: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+    
+    @media (max-width: 768px) {
+      .profile-header h1 {
+        font-size: 2rem;
+      }
+      
+      .contact-info {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .skills-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container profile-header">
+      <h1>Eric Alves</h1>
+      <div class="title">Técnico de Suporte de TI & Estudante de Análise e Desenvolvimento de Sistemas</div>
+      
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:seuemail@email.com">seuemail@email.com</a>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <a href="tel:5511999999999">(11) 99999-9999</a>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>São Paulo - SP</span>
+        </div>
+      </div>
+      
+      <div class="social-links">
+        <a href="https://www.linkedin.com/" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2 class="section-title"><i class="fas fa-user"></i> Resumo Profissional</h2>
+      <p class="summary-text">
+        Profissional de TI com experiência em suporte técnico, atendimento remoto, implantação de sistemas e manutenção de infraestrutura. 
+        Atuação em delegacias, penitenciárias, prefeituras e mais de 45 unidades do Poupatempo. 
+        Conhecimentos em redes, nuvem, Windows, Office, ITSM e Active Directory.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title"><i class="fas fa-briefcase"></i> Experiência Profissional</h2>
+      
+      <div class="experience-item">
+        <div class="job-title">Técnico de Suporte</div>
+        <div class="company">Prodesp</div>
+        <div class="date">2020 – Atual</div>
+        <ul class="responsibilities">
+          <li>Atendimento de chamados via ITSM com acesso remoto</li>
+          <li>Instalação e configuração de softwares</li>
+          <li>Diagnóstico de lentidão e travamentos em sistema de coleta biométrica</li>
+          <li>Implantação e manutenção de sistemas em delegacias, penitenciárias e prefeituras</li>
+          <li>Treinamento e orientação para atendentes do sistema biométrico</li>
+        </ul>
+      </div>
+      
+      <div class="experience-item">
+        <div class="job-title">Técnico de Suporte</div>
+        <div class="company">Poupatempo</div>
+        <div class="date">Anterior a 2020</div>
+        <ul class="responsibilities">
+          <li>Implantação de estações de trabalho em mais de 45 unidades</li>
+          <li>Configuração de micros e redes</li>
+          <li>Apoio e treinamento a usuários finais</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Formação Acadêmica</h2>
+      
+      <div class="education-item">
+        <div class="job-title">Análise e Desenvolvimento de Sistemas</div>
+        <div class="date">Previsão de conclusão: 2º semestre de 2026</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title"><i class="fas fa-star"></i> Competências</h2>
+      
+      <div class="skills-container">
+        <div class="skill-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Suporte técnico em Windows e Office</span>
+        </div>
+        <div class="skill-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Active Directory (AD)</span>
+        </div>
+        <div class="skill-item">
+          <i class="fas fa-check-circle"></i>
+          <span>ITSM – atendimento de chamados</span>
+        </div>
+        <div class="skill-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Redes de computadores</span>
+        </div>
+        <div class="skill-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Noções de Power BI</span>
+        </div>
+        <div class="skill-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Implantação e configuração de sistemas</span>
+        </div>
+        <div class="skill-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Treinamento e orientação de usuários</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      &copy; 2025 - Eric Alves - Todos os direitos reservados
+    </div>
+  </footer>
+
+</body>
+</html>
