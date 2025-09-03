@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mural de Fotos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 1rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            aspect-ratio: 1/1;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            color: white;
+            padding: 20px 10px 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        
+        .photo-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .photo-desc {
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            background-color: #333;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Meu Mural de Fotos</h1>
+        <p>Memórias e momentos especiais</p>
+    </header>
+    
+    <div class="container">
+        <div class="gallery">
+            <!-- Item 1 -->
+            <div class="gallery-item">
+                <img src="https://picsum.photos/id/1/500/500" alt="Workspace">
+                <div class="overlay">
+                    <div class="photo-title">Workspace</div>
+                    <div class="photo-desc">Local de trabalho organizado</div>
+                </div>
+            </div>
+            
+            <!-- Item 2 -->
+            <div class="gallery-item">
+                <img src="https://picsum.photos/id/10/500/500" alt="Floresta">
+                <div class="overlay">
+                    <div class="photo-title">Floresta</div>
+                    <div class="photo-desc">Paisagem natural exuberante</div>
+                </div>
+            </div>
+            
+            <!-- Item 3 -->
+            <div class="gallery-item">
+                <img src="https://picsum.photos/id/11/500/500" alt="Praia">
+                <div class="overlay">
+                    <div class="photo-title">Praia</div>
+                    <div class="photo-desc">Dia ensolarado na praia</div>
+                </div>
+            </div>
+            
+            <!-- Item 4 -->
+            <div class="gallery-item">
+                <img src="https://picsum.photos/id/12/500/500" alt="Mar">
+                <div class="overlay">
+                    <div class="photo-title">Mar</div>
+                    <div class="photo-desc">Ondas do oceano</div>
+                </div>
+            </div>
+            
+            <!-- Item 5 -->
+            <div class="gallery-item">
+                <img src="https://picsum.photos/id/13/500/500" alt="Montanhas">
+                <div class="overlay">
+                    <div class="photo-title">Montanhas</div>
+                    <div class="photo-desc">Pico nevado ao amanhecer</div>
+                </div>
+            </div>
+            
+            <!-- Item 6 -->
+            <div class="gallery-item">
+                <img src="https://picsum.photos/id/14/500/500" alt="Campo">
+                <div class="overlay">
+                    <div class="photo-title">Campo</div>
+                    <div class="photo-desc">Plantação em um dia de sol</div>
+                </div>
+            </div>
+            
+            <!-- Item 7 -->
+            <div class="gallery-item">
+                <img src="https://picsum.photos/id/15/500/500" alt="Pôr do sol">
+                <div class="overlay">
+                    <div class="photo-title">Pôr do sol</div>
+                    <div class="photo-desc">Final de dia na natureza</div>
+                </div>
+            </div>
+            
+            <!-- Item 8 -->
+            <div class="gallery-item">
+                <img src="https://picsum.photos/id/16/500/500" alt="Montanhas rochosas">
+                <div class="overlay">
+                    <div class="photo-title">Montanhas Rochosas</div>
+                    <div class="photo-desc">Formações rochosas impressionantes</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Meu Mural de Fotos &copy; 2023 - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>
